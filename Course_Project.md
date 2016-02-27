@@ -20,7 +20,7 @@ Cleaning the data and turning the original set into a lower dimensional set prov
 Initially looking at these datasets, there appears to be three major problems
 
 * The data is high dimensional
-* There are several variables that contain NA values for over half the observations. 
+* There are several variables that contain NA values for over half the observations. Compounding this issue, there are more of these types of variables in the test set than the training set.
 * Some variables appear to be irrelevant (i.e variable 'X', 'tiimestamp')
 
 Creating an accurate model will neccessitate dealing with these data issues.
@@ -65,7 +65,7 @@ length(testing.na)#count of the NA columns
 ```
 
 ```r
-training.na %in% testing.na #the NA columns between the datasets appear to match
+training.na %in% testing.na #the NA columns in the training set appear to match those in the testing set
 ```
 
 ```
@@ -74,6 +74,23 @@ training.na %in% testing.na #the NA columns between the datasets appear to match
 ## [29] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [43] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [57] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+```
+
+```r
+testing.na %in% training.na #however there are even more NA columns in the testing set. Only the variables with values in both sets should be considered
+```
+
+```
+##   [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [12] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [34]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+##  [45]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [56] FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+##  [67]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [78] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+##  [89]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [100]  TRUE
 ```
 
 ```r
