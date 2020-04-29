@@ -12,7 +12,7 @@ Cleaning the data and turning the original set into a lower dimensional set prov
 <br>
 <br>
 
-##Data Loading and Processing
+## Data Loading and Processing
 
 
 
@@ -117,7 +117,7 @@ names(training) %in% names(testing) #the columns in general do match, aside from
 <br>
 <br>
 
-###Cleaning the Data
+### Cleaning the Data
 Looking through the variables, the first step of cleaning this data includes getting rid of the variables that contain primarily NA data. Including this data could lead to overfitting and skew the fitted model. It may be possible to impute the NA values, however there seems to be too many NA values for this to be a good idea. Some of the NA values are the result that  the non-NA vaules are recording max/mins/means. These could perhaps be used in place of the numerous observations, but with such a high dimensional dataset it is better to use as many observations as possible.
 <br>
 <br>
@@ -176,7 +176,7 @@ dim(testing2)
 <br>
 <br>
 
-###Dimension Reduction
+### Dimension Reduction
 Removing the extraneous variables reduced the dimensions of the data quite extensively, however many of the remaining variables are probably highly correlated. Below a principal component analysis is conducted on the training set. A threshold of explaining 90% of the variabeles is imposed on the function. The resulting dataset has only 21 predictor variables, compared to the 55 variables in the cleaned dataset above. This is a much more reasonable dataset to use in prediction.
 
 
@@ -215,7 +215,7 @@ dim(preProc.training) #note the classe variable was reattached above, so the pre
 <br>
 <br>
 
-##Fitting a Model
+## Fitting a Model
 
 
 A random forest is fit using the ranger package (provides a much faster implemenation of the random forest algorithim) resulting in a classification tree model. Default settings were used, aside from assigning the model to record the Gini Impurity Index, and 500 trees were grown.
@@ -258,7 +258,7 @@ fit.rf
 <br>
 <br>
 
-##Assessment of Model
+## Assessment of Model
 
 The confusion matrix is based on our out of bag samples and shows that the model does a pretty good job estimating the classe variable, although it is not perfect. Overall the out of bag prediction error is quite small ~2%
 
@@ -303,7 +303,7 @@ ggplot(vImp, aes(x=vars, y = mean_gini_decrease))+stat_identity(geom="bar")+coor
 <br>
 <br>
 
-##Prediction
+## Prediction
 
 Finally, the test set can be run through the model. Since the model was built using PCA predictors, the PCA predicted values of the test set must be used when making prediction. The results matched the true value for 20/20 predictions.
 
