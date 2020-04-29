@@ -2,7 +2,7 @@
 Miles  
 February 24, 2016  
 
-##Executive Summary
+## Executive Summary
 
 Below an effort is made to create a prediction model based on movement tracking data in collected while subjects performed a dumbell curl. The goal is to accurately predict the classe variable which defines the correctness of the overall movement (coded A:E). 
 <br>
